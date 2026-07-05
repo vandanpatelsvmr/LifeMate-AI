@@ -2,3 +2,4 @@ Flask
 google-genai
 python-dotenv
 python-pptx
+gunicorn
