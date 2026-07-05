@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - LifeMate AI Export</title>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap');
+
+        :root {
+            --primary: #008080;
+            --text-dark: #1f2937;
+            --text-muted: #4b5563;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 40px 20px;
+            background-color: #f9fafb;
+        }
+
+        .report-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+        }
+
+        /* Top control bar (hidden when printing) */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            background: #fff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        .btn-outline:hover {
+            background: #f3f4f6;
+            color: var(--text-dark);
+        }
+
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .date-stamp {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Markdown Styling */
+        .content h1, .content h2, .content h3 {
+            font-family: 'Outfit', sans-serif;
+            color: #111827;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        .content h1 {
+            font-size: 24px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px;
+        }
+
+        .content h2 {
+            font-size: 20px;
+        }
+
+        .content h3 {
+            font-size: 16px;
+        }
+
+        .content p {
+            margin-bottom: 16px;
+            color: #374151;
+        }
+
+        .content ul, .content ol {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        .content li {
+            margin-bottom: 6px;
+            color: #374151;
+        }
+
+        .content blockquote {
+            border-left: 4px solid var(--primary);
+            padding: 10px 20px;
+            background: #f3f4f6;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .content strong {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        footer {
+            margin-top: 50px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Print Media queries */
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+            }
+            .controls {
+                display: none;
+            }
+            .report-card {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Controls Bar -->
+    <div class="controls">
+        <a href="/dashboard" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> Dashboard</a>
+        <button class="btn" onclick="window.print()"><i class="fa-solid fa-print"></i> Print Document</button>
+    </div>
+
+    <!-- Report Wrapper -->
+    <div class="report-card">
+        <header>
+            <div class="logo"><i class="fa-solid fa-heart-pulse"></i> LifeMate AI</div>
+            <div class="date-stamp" id="date-box">Generated: July 5, 2026</div>
+        </header>
+
+        <!-- Container for parsed content -->
+        <article class="content" id="markdown-target"></article>
+
+        <footer>
+            LifeMate AI - Your companion for smarter living and stronger communities.
+        </footer>
+    </div>
+
+    <!-- Raw content injected here -->
+    <div id="raw-markdown" style="display: none;">{{ content }}</div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Set date stamp
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById("date-box").innerText = "Generated: " + new Date().toLocaleDateString(undefined, options);
+
+            // Fetch and parse markdown
+            const rawMd = document.getElementById("raw-markdown").innerText;
+            document.getElementById("markdown-target").innerHTML = parseMarkdown(rawMd);
+        });
+
+        // Simplified Markdown Parser (aligned with script.js)
+        function parseMarkdown(md) {
+            if (!md) return "";
+            
+            let html = md
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+
+            html = html.replace(/^### (.*?)$/gm, "<h3>$1</h3>");
+            html = html.replace(/^## (.*?)$/gm, "<h2>$1</h2>");
+            html = html.replace(/^# (.*?)$/gm, "<h1>$1</h1>");
+            html = html.replace(/^&gt; (.*?)$/gm, "<blockquote>$1</blockquote>");
+            html = html.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
+            let inList = false;
+            const lines = html.split("\n");
+            for (let i = 0; i < lines.length; i++) {
+                let line = lines[i].trim();
+                if (line.startsWith("- ") || line.startsWith("* ")) {
+                    let itemContent = line.substring(2);
+                    if (!inList) {
+                        lines[i] = "<ul><li>" + itemContent + "</li>";
+                        inList = true;
+                    } else {
+                        lines[i] = "<li>" + itemContent + "</li>";
+                    }
+                } else {
+                    if (inList) {
+                        lines[i-1] = lines[i-1] + "</ul>";
+                        inList = false;
+                    }
+                }
+            }
+            if (inList) {
+                lines[lines.length - 1] = lines[lines.length - 1] + "</ul>";
+            }
+            html = lines.join("\n");
+
+            html = html.replace(/\n\n/g, "</p><p>");
+            html = "<p>" + html + "</p>";
+            html = html
+                .replace(/<p><h3>/g, "<h3>")
+                .replace(/<\/h3><\/p>/g, "</h3>")
+                .replace(/<p><h2>/g, "<h2>")
+                .replace(/<\/h2><\/p>/g, "</h2>")
+                .replace(/<p><h1>/g, "<h1>")
+                .replace(/<\/h1><\/p>/g, "</h1>")
+                .replace(/<p><ul>/g, "<ul>")
+                .replace(/<\/ul><\/p>/g, "</ul>")
+                .replace(/<p><blockquote>/g, "<blockquote>")
+                .replace(/<\/blockquote><\/p>/g, "</blockquote>")
+                .replace(/<p><\/p>/g, "");
+
+            return html;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeMate AI - Your AI companion for smarter living</title>
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Background glowing spots -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <header class="landing-navbar">
+            <a href="/" class="logo">
+                <i class="fa-solid fa-heart-pulse"></i> LifeMate AI
+            </a>
+            <a href="/dashboard" class="btn-nav-dashboard">
+                <i class="fa-solid fa-gauge-high"></i> Launch Dashboard
+            </a>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="tagline-badge">
+                <i class="fa-solid fa-sparkles"></i> Spark Better Daily Decisions
+            </div>
+            <h1 class="hero-title">
+                One Intelligent Assistant for <span>Smarter Living</span> & Stronger Communities
+            </h1>
+            <p class="hero-description">
+                Consolidate your daily planners, budget guides, wellness logs, eco-habits, and emergency prep checkers into a single, Gemini-powered assistant.
+            </p>
+            <a href="/dashboard" class="btn-primary">
+                Get Started Free <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </section>
+
+        <!-- Feature cards showcase -->
+        <h2 style="font-family: var(--font-heading); font-size: 32px; text-align: center; margin-bottom: 40px;">
+            Explore the Essential LifeMate Toolkit
+        </h2>
+        <section class="features-grid">
+            <!-- Feature 1: Planner -->
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <h3 class="card-title">Daily Planner</h3>
+                <p class="card-description">
+                    Optimize your daily agenda. Enter your tasks and available time to generate a structured timeline and customized productivity hacks.
+                </p>
+                <a href="/dashboard" class="card-link">Optimize Schedule <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+
+            <!-- Feature 2: Budget -->
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <h3 class="card-title">Budget Assistant</h3>
+                <p class="card-description">
+                    Structure your finances. Get a clear breakdown of your expenses and personalized suggestions to hit your monthly savings goals.
+                </p>
+                <a href="/dashboard" class="card-link">Structure Budget <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+
+            <!-- Feature 3: Wellness -->
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-weight-scale"></i>
+                </div>
+                <h3 class="card-title">Wellness Guide</h3>
+                <p class="card-description">
+                    Formulate healthy habits. Share your age, lifestyle, and fitness objectives to receive tailor-made exercise, diet, and sleep advise.
+                </p>
+                <a href="/dashboard" class="card-link">Build Routine <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+
+            <!-- Feature 4: Community -->
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+                <h3 class="card-title">Community & Sustainability</h3>
+                <p class="card-description">
+                    Go green and bond. Learn practical strategies to conserve water, reduce household waste, and organize local neighborhood activities.
+                </p>
+                <a href="/dashboard" class="card-link">Get Eco Ideas <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+
+            <!-- Feature 5: Emergency -->
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <h3 class="card-title">Emergency Guide</h3>
+                <p class="card-description">
+                    Stay prepared. Generate safety checklists, post-crisis guidance, and immediate rescue instructions for Floods, Fires, or Earthquakes.
+                </p>
+                <a href="/dashboard" class="card-link">Prepare Now <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+
+            <!-- Feature 6: Smart Assistant -->
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-comment-dots"></i>
+                </div>
+                <h3 class="card-title">AI Smart Assistant</h3>
+                <p class="card-description">
+                    Ask anything. Ask Gemini any life-management question, from setting sustainable goals to solving study obstacles.
+                </p>
+                <a href="/dashboard" class="card-link">Chat Now <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 LifeMate AI. Built for Gen AI Academy Hackathon. Powered by Google Gemini AI.</p>
+        </footer>
+    </div>
+</body>
+</html>

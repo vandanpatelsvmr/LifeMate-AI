@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - LifeMate AI</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <a href="/" class="logo">
+                <i class="fa-solid fa-heart-pulse"></i> LifeMate AI
+            </a>
+            
+            <div class="menu-section">
+                <div class="menu-label">Main</div>
+                <ul class="menu-items">
+                    <li class="menu-item">
+                        <a class="menu-link active" data-target="overview-section">
+                            <i class="fa-solid fa-table-cells-large"></i> Overview
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link" data-target="chat-section">
+                            <i class="fa-solid fa-comment-dots"></i> Smart Assistant
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="menu-section">
+                <div class="menu-label">Modules</div>
+                <ul class="menu-items">
+                    <li class="menu-item">
+                        <a class="menu-link" data-target="planner-section">
+                            <i class="fa-solid fa-calendar-check"></i> Daily Planner
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link" data-target="budget-section">
+                            <i class="fa-solid fa-wallet"></i> Budget Assistant
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link" data-target="wellness-section">
+                            <i class="fa-solid fa-weight-scale"></i> Wellness Guide
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link" data-target="community-section">
+                            <i class="fa-solid fa-seedling"></i> Community & Eco
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link" data-target="emergency-section">
+                            <i class="fa-solid fa-triangle-exclamation"></i> Emergency Guide
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="menu-section" style="margin-top: auto;">
+                <ul class="menu-items">
+                    <li class="menu-item">
+                        <a href="/" class="menu-link">
+                            <i class="fa-solid fa-arrow-left-long"></i> Back to Home
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Dashboard View Area -->
+        <main class="main-content">
+            <!-- Top Dashboard Header -->
+            <header class="dashboard-header">
+                <h1 class="page-title">LifeMate AI Hub</h1>
+                <!-- API Status Toggle button -->
+                <div class="api-badge" id="api-badge">
+                    <div class="indicator-dot inactive" id="api-status-dot"></div>
+                    <span id="api-status-text">Gemini AI: Setup Key</span>
+                </div>
+            </header>
+
+            <!-- ── VIEW: Overview ──────────────────────────────────────── -->
+            <section class="view-section active" id="overview-section">
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Planner Tasks</h3>
+                            <p>Optimized</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <i class="fa-solid fa-piggy-bank"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Budget Advisor</h3>
+                            <p>Active</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Eco Impact</h3>
+                            <p>Monitored</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel" style="margin-bottom: 30px;">
+                    <h2 style="font-family: var(--font-heading); font-size: 22px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-sparkles" style="color: var(--color-primary);"></i> Welcome back to LifeMate AI
+                    </h2>
+                    <p style="color: var(--text-secondary); max-width: 800px; margin-bottom: 20px;">
+                        Make smarter daily decisions by using our targeted AI assistants. Simply click any assistant in the sidebar to get started, or configure your Gemini API Key using the status indicator in the top right to enable connections.
+                    </p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div class="glass-panel" style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h3 style="font-family: var(--font-heading); margin-bottom: 10px;"><i class="fa-solid fa-list-check" style="color: var(--color-primary);"></i> Smart Planner</h3>
+                            <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 15px;">Plan tasks, available hours, and fitness goals to output an hourly schedule.</p>
+                        </div>
+                        <button onclick="document.querySelector('[data-target=\'planner-section\']').click()" class="btn-submit" style="padding: 10px;">Open Planner</button>
+                    </div>
+                    <div class="glass-panel" style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h3 style="font-family: var(--font-heading); margin-bottom: 10px;"><i class="fa-solid fa-wallet" style="color: var(--color-primary);"></i> Finance Hub</h3>
+                            <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 15px;">Input your monthly budget and expenses to analyze your savings gap.</p>
+                        </div>
+                        <button onclick="document.querySelector('[data-target=\'budget-section\']').click()" class="btn-submit" style="padding: 10px;">Open Budget</button>
+                    </div>
+                    <div class="glass-panel" style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h3 style="font-family: var(--font-heading); margin-bottom: 10px;"><i class="fa-solid fa-shield-halved" style="color: var(--color-primary);"></i> Crisis Center</h3>
+                            <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 15px;">Access immediate survival actions and emergency kits checklists.</p>
+                        </div>
+                        <button onclick="document.querySelector('[data-target=\'emergency-section\']').click()" class="btn-submit" style="padding: 10px;">Open Rescue</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── VIEW: AI Smart Assistant ────────────────────────────── -->
+            <section class="view-section" id="chat-section">
+                <div class="glass-panel chat-container">
+                    <div class="output-header">
+                        <div class="output-title"><i class="fa-solid fa-comment-dots" style="color: var(--color-primary);"></i> AI Smart Assistant</div>
+                    </div>
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message-bubble ai">
+                            Hello! I'm LifeMate AI, your smart lifestyle assistant. Ask me anything about daily routines, financial planning, wellness, green habits, or emergency safety!
+                        </div>
+                    </div>
+                    <form class="chat-input-area" id="chat-form">
+                        <input type="text" class="form-control" id="chat-input" placeholder="Type a message (e.g. How can I save ₹3000 every month?)" required>
+                        <button type="submit" class="btn-send">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- ── VIEW: Daily Planner ─────────────────────────────────── -->
+            <section class="view-section" id="planner-section">
+                <div class="split-pane">
+                    <div class="glass-panel">
+                        <div class="form-title"><i class="fa-solid fa-calendar-check"></i> Optimize Your Day</div>
+                        <form id="planner-form">
+                            <div class="form-group">
+                                <label for="planner-tasks">Tasks list (one per line)</label>
+                                <textarea class="form-control" id="planner-tasks" placeholder="Ex:&#10;Complete math assignment&#10;Go grocery shopping&#10;Reply to work emails" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="planner-time">Available Productive Time (hours)</label>
+                                <input type="number" step="0.5" class="form-control" id="planner-time" placeholder="Ex: 6" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="planner-wellness">Wellness Goals (optional)</label>
+                                <input type="text" class="form-control" id="planner-wellness" placeholder="Ex: 30 min walk, Drink 3L water">
+                            </div>
+                            <button type="submit" class="btn-submit">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Plan
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="glass-panel">
+                        <div class="output-header">
+                            <div class="output-title">Generated Daily Schedule</div>
+                            <div class="output-actions">
+                                <button class="btn-action btn-copy" title="Copy to clipboard"><i class="fa-solid fa-copy"></i></button>
+                                <button class="btn-action btn-print" title="Print/Export Report"><i class="fa-solid fa-print"></i></button>
+                            </div>
+                        </div>
+                        <!-- Placeholder -->
+                        <div class="output-placeholder">
+                            <i class="fa-solid fa-calendar-plus"></i>
+                            <p>Fill out the daily planner form and click "Generate Plan" to see your customized schedule here.</p>
+                        </div>
+                        <!-- Loading State -->
+                        <div class="loading-box">
+                            <div class="spinner"></div>
+                            <div class="loading-text">Optimizing Agenda...</div>
+                            <div class="loading-subtext">Gemini AI is sequencing your tasks and schedule</div>
+                        </div>
+                        <!-- Output Area -->
+                        <div class="output-content markdown-body"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── VIEW: Budget Assistant ──────────────────────────────── -->
+            <section class="view-section" id="budget-section">
+                <div class="split-pane">
+                    <div class="glass-panel">
+                        <div class="form-title"><i class="fa-solid fa-wallet"></i> Budget Optimizer</div>
+                        <form id="budget-form">
+                            <div class="form-group">
+                                <label for="budget-income">Monthly Net Income (₹)</label>
+                                <input type="number" class="form-control" id="budget-income" placeholder="Ex: 50000" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="budget-expenses">Estimated Expenses (₹)</label>
+                                <textarea class="form-control" id="budget-expenses" placeholder="Ex:&#10;Rent: ₹15000&#10;Food & groceries: ₹8000&#10;Utilities: ₹3000" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="budget-savings">Monthly Savings Goal (₹)</label>
+                                <input type="number" class="form-control" id="budget-savings" placeholder="Ex: 10000" required>
+                            </div>
+                            <button type="submit" class="btn-submit">
+                                <i class="fa-solid fa-chart-line"></i> Analyze Finances
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="glass-panel">
+                        <div class="output-header">
+                            <div class="output-title">Savings & Budget Breakdown</div>
+                            <div class="output-actions">
+                                <button class="btn-action btn-copy" title="Copy to clipboard"><i class="fa-solid fa-copy"></i></button>
+                                <button class="btn-action btn-print" title="Print/Export Report"><i class="fa-solid fa-print"></i></button>
+                            </div>
+                        </div>
+                        <div class="output-placeholder">
+                            <i class="fa-solid fa-receipt"></i>
+                            <p>Submit your income details and expenses to see your customized financial report here.</p>
+                        </div>
+                        <div class="loading-box">
+                            <div class="spinner"></div>
+                            <div class="loading-text">Analyzing Expenses...</div>
+                            <div class="loading-subtext">Gemini AI is formatting your budget diagnostics</div>
+                        </div>
+                        <div class="output-content markdown-body"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── VIEW: Wellness Guide ────────────────────────────────── -->
+            <section class="view-section" id="wellness-section">
+                <div class="split-pane">
+                    <div class="glass-panel">
+                        <div class="form-title"><i class="fa-solid fa-heart-pulse"></i> Habit & Lifestyle Planner</div>
+                        <form id="wellness-form">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="wellness-age">Age</label>
+                                    <input type="number" class="form-control" id="wellness-age" placeholder="Ex: 24" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="wellness-lifestyle">Lifestyle</label>
+                                    <select class="form-control" id="wellness-lifestyle" required>
+                                        <option value="Sedentary">Sedentary (Desk Job)</option>
+                                        <option value="Moderately Active">Moderately Active (Light workout)</option>
+                                        <option value="Very Active">Very Active (Heavy training)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="wellness-goals">Health & Fitness Goals</label>
+                                <input type="text" class="form-control" id="wellness-goals" placeholder="Ex: Lose fat, build stamina, improve sleep" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="wellness-diet">Dietary Preferences / Restrictions</label>
+                                <input type="text" class="form-control" id="wellness-diet" placeholder="Ex: Vegetarian, High protein, No peanut">
+                            </div>
+                            <button type="submit" class="btn-submit">
+                                <i class="fa-solid fa-dumbbell"></i> Build Wellness Routine
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="glass-panel">
+                        <div class="output-header">
+                            <div class="output-title">Personalized Lifestyle Routine</div>
+                            <div class="output-actions">
+                                <button class="btn-action btn-copy" title="Copy to clipboard"><i class="fa-solid fa-copy"></i></button>
+                                <button class="btn-action btn-print" title="Print/Export Report"><i class="fa-solid fa-print"></i></button>
+                            </div>
+                        </div>
+                        <div class="output-placeholder">
+                            <i class="fa-solid fa-heart-circle-check"></i>
+                            <p>Generate your wellness plan to see physical, dietary, and sleep schedules here.</p>
+                        </div>
+                        <div class="loading-box">
+                            <div class="spinner"></div>
+                            <div class="loading-text">Crafting Lifestyle Guide...</div>
+                            <div class="loading-subtext">Gemini AI is calculating meal plans and exercises</div>
+                        </div>
+                        <div class="output-content markdown-body"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── VIEW: Community & Sustainability ────────────────────── -->
+            <section class="view-section" id="community-section">
+                <div class="split-pane">
+                    <div class="glass-panel">
+                        <div class="form-title"><i class="fa-solid fa-seedling"></i> Eco-Living & Community Support</div>
+                        <form id="community-form">
+                            <div class="form-group">
+                                <label for="community-question">What sustainability topic do you need help with?</label>
+                                <textarea class="form-control" id="community-question" placeholder="Ex:&#10;How can my apartment building reduce daily plastic waste?&#10;What are the best methods to conserve water during dry seasons?&#10;How do I organize a neighborhood tool-sharing program?" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">
+                                <i class="fa-solid fa-globe"></i> Generate Eco Strategies
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="glass-panel">
+                        <div class="output-header">
+                            <div class="output-title">Green Impact & Organizing Blueprint</div>
+                            <div class="output-actions">
+                                <button class="btn-action btn-copy" title="Copy to clipboard"><i class="fa-solid fa-copy"></i></button>
+                                <button class="btn-action btn-print" title="Print/Export Report"><i class="fa-solid fa-print"></i></button>
+                            </div>
+                        </div>
+                        <div class="output-placeholder">
+                            <i class="fa-solid fa-people-carry-box"></i>
+                            <p>Submit your eco query to generate actionable sustainability and community blueprints.</p>
+                        </div>
+                        <div class="loading-box">
+                            <div class="spinner"></div>
+                            <div class="loading-text">Formulating Blueprint...</div>
+                            <div class="loading-subtext">Gemini AI is designing community activities</div>
+                        </div>
+                        <div class="output-content markdown-body"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── VIEW: Emergency Guide ───────────────────────────────── -->
+            <section class="view-section" id="emergency-section">
+                <div class="split-pane">
+                    <div class="glass-panel">
+                        <div class="form-title"><i class="fa-solid fa-triangle-exclamation"></i> Emergency Readiness Advisory</div>
+                        <form id="emergency-form">
+                            <div class="form-group">
+                                <label for="emergency-type">Select Emergency Scenario</label>
+                                <select class="form-control" id="emergency-type" required>
+                                    <option value="Flood">Flood / Heavy Rainfall</option>
+                                    <option value="Fire">Building or Wild Fire</option>
+                                    <option value="Earthquake">Earthquake Tremors</option>
+                                    <option value="Heatwave">Severe Heatwave</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="emergency-location">Your General Location/Housing Context (optional)</label>
+                                <input type="text" class="form-control" id="emergency-location" placeholder="Ex: 5th-floor apartment in Mumbai, residential house in Delhi">
+                            </div>
+                            <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-danger) 100%); color: #fff;">
+                                <i class="fa-solid fa-shield-halved"></i> Generate Safety Checklist
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="glass-panel">
+                        <div class="output-header">
+                            <div class="output-title">Emergency Checklists & Actions</div>
+                            <div class="output-actions">
+                                <button class="btn-action btn-copy" title="Copy to clipboard"><i class="fa-solid fa-copy"></i></button>
+                                <button class="btn-action btn-print" title="Print/Export Report"><i class="fa-solid fa-print"></i></button>
+                            </div>
+                        </div>
+                        <div class="output-placeholder">
+                            <i class="fa-solid fa-life-ring"></i>
+                            <p>Select a hazard option and submit to generate immediate evacuation and survival protocols.</p>
+                        </div>
+                        <div class="loading-box">
+                            <div class="spinner"></div>
+                            <div class="loading-text">Assembling Protocol...</div>
+                            <div class="loading-subtext">Gemini AI is gathering critical response guidelines</div>
+                        </div>
+                        <div class="output-content markdown-body"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <p>&copy; 2026 LifeMate AI. Built for Gen AI Academy Hackathon. Powered by Google Gemini AI.</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- API KEY SETTING MODAL -->
+    <div class="modal-overlay" id="key-modal">
+        <div class="modal-content glass-panel">
+            <button class="modal-close" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="form-title" style="margin-bottom: 15px;"><i class="fa-solid fa-key"></i> Setup Gemini API Key</h2>
+            
+            <div class="info-alert">
+                <i class="fa-solid fa-circle-info"></i>
+                <div>
+                    <strong>Secure Key Setup:</strong> Your API key is stored only inside your browser session and is used to call Gemini APIs. It is never logged on our servers.
+                </div>
+            </div>
+
+            <form id="api-key-form">
+                <div class="form-group">
+                    <label for="api-key-input">Gemini API Key</label>
+                    <input type="password" class="form-control" id="api-key-input" placeholder="AIzaSy..." required>
+                </div>
+                <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 24px;">
+                    Don't have a key? Get one for free from <a href="https://aistudio.google.com/" target="_blank" style="color: var(--color-primary); text-decoration: underline;">Google AI Studio</a>.
+                </div>
+                <div class="row">
+                    <button type="button" class="btn-submit" id="clear-key-btn" style="background: rgba(239, 68, 68, 0.15); color: var(--color-danger); border: 1px solid rgba(239, 68, 68, 0.3);">
+                        Clear Key
+                    </button>
+                    <button type="submit" class="btn-submit">
+                        Save Key
+                    </button>
+                </div>
+                <button type="button" class="btn-submit" id="cancel-key-btn" style="background: transparent; color: var(--text-muted); margin-top: 10px;">
+                    Cancel
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
